@@ -79,11 +79,11 @@ func main() {
 		}
 
 		if lastIndex != -1 && lastIndex != firstIndex {
-			line = line[:lastIndex] + set[lastReplace] + line[lastIndex:]
+			line = line[:lastIndex+1] + set[lastReplace] + line[lastIndex+1:]
 		}
 
 		if firstIndex != -1 {
-			line = line[:firstIndex] + set[firstReplace] + line[firstIndex:]
+			line = line[:firstIndex+1] + set[firstReplace] + line[firstIndex+1:]
 		}
 
 		for _, char := range line {
