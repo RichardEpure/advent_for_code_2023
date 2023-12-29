@@ -20,7 +20,7 @@ func check(e error) {
 	}
 }
 
-func CheckNumAtIndex(i int, visited map[int]bool, chars []rune) (string, bool) {
+func checkNumAtIndex(i int, visited map[int]bool, chars []rune) (string, bool) {
 	_, ok := visited[i]
 	if ok {
 		return "", false
@@ -94,7 +94,7 @@ func main() {
 				for _, chars := range linesToParse {
 					if len(chars) > 0 {
 						for k := j - 1; k <= j+1 && j < len(chars); k++ {
-							number, ok := CheckNumAtIndex(k, visited, chars)
+							number, ok := checkNumAtIndex(k, visited, chars)
 							if ok {
 								number, err := strconv.Atoi(number)
 								check(err)
