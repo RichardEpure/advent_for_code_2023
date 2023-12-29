@@ -54,7 +54,7 @@ func checkNumAtIndex(i int, visited map[int]bool, chars []rune) (string, bool) {
 	return number, true
 }
 
-func IsSymbol(char rune) bool {
+func isSymbol(char rune) bool {
 	_, ok := symbols[char]
 	return ok
 }
@@ -90,7 +90,7 @@ func main() {
 
 		for j, char := range line {
 			visited := make(map[int]bool)
-			if char != '.' && IsSymbol(char) {
+			if char != '.' && isSymbol(char) {
 				for _, chars := range linesToParse {
 					if len(chars) > 0 {
 						for k := j - 1; k <= j+1 && j < len(chars); k++ {
