@@ -12,7 +12,7 @@ func check(e error) {
 	}
 }
 
-func FindMatches(cards []string, i int, memo map[int]int) (matches int) {
+func findMatches(cards []string, i int, memo map[int]int) (matches int) {
 	matches, ok := memo[i]
 
 	if ok {
@@ -39,7 +39,7 @@ func FindMatches(cards []string, i int, memo map[int]int) (matches int) {
 	memo[i] = localMatches
 
 	for j := 1; j <= localMatches; j++ {
-		memo[i] += FindMatches(cards, i+j, memo)
+		memo[i] += findMatches(cards, i+j, memo)
 	}
 
 	return memo[i]
@@ -64,7 +64,7 @@ func main() {
 	memo := make(map[int]int)
 
 	for i := range lines {
-		sum += FindMatches(lines, i, memo)
+		sum += findMatches(lines, i, memo)
 	}
 
 	println("total scratchcards: ", sum)
