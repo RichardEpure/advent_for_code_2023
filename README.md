@@ -1,1 +1,1 @@
-Learning Go by solving advent for code 2023 challenges.
+Learning Go by solving advent of code 2023 challenges.
