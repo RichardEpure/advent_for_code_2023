@@ -7,27 +7,27 @@ import (
 	"strings"
 )
 
-type Range struct {
+type RangeMap struct {
 	destination int
 	source      int
 	length      int
 }
 
-func (r *Range) Get(val int) int {
-	if val >= r.source && val < r.source+r.length {
-		return (val - r.source) + r.destination
+func (rm *RangeMap) Get(val int) int {
+	if val >= rm.source && val < rm.source+rm.length {
+		return (val - rm.source) + rm.destination
 	}
 	return val
 }
 
 type Map struct {
-	ranges []Range
+	rangeMaps []RangeMap
 }
 
 func (m *Map) Get(val int) int {
 	newVal := val
-	for _, r := range m.ranges {
-		newVal = r.Get(val)
+	for _, rm := range m.rangeMaps {
+		newVal = rm.Get(val)
 		if newVal != val {
 			break
 		}
@@ -35,8 +35,8 @@ func (m *Map) Get(val int) int {
 	return newVal
 }
 
-func (m *Map) AddRange(r Range) {
-	m.ranges = append(m.ranges, r)
+func (m *Map) AddRange(rm RangeMap) {
+	m.rangeMaps = append(m.rangeMaps, rm)
 }
 
 func main() {
@@ -61,7 +61,7 @@ func main() {
 
 	for _, line := range lines {
 		if len(line) == 0 {
-			maps = append(maps, Map{ranges: []Range{}})
+			maps = append(maps, Map{rangeMaps: []RangeMap{}})
 			continue
 		}
 
@@ -83,7 +83,7 @@ func main() {
 			panic(err)
 		}
 
-		maps[len(maps)-1].AddRange(Range{destination, source, length})
+		maps[len(maps)-1].AddRange(RangeMap{destination, source, length})
 	}
 
 	locations := []int{}

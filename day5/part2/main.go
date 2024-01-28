@@ -48,8 +48,8 @@ type Map struct {
 
 func (m *Map) Get(val int) int {
 	newVal := val
-	for _, r := range m.rangeMaps {
-		newVal = r.Get(val)
+	for _, rm := range m.rangeMaps {
+		newVal = rm.Get(val)
 		if newVal != val {
 			break
 		}
