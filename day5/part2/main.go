@@ -37,7 +37,7 @@ func (rm *RangeMap) GetRanges(r Range) (unmapped []Range, mapped Range) {
 		unmapped = append(unmapped, Range{r.value, start - r.value})
 	}
 	if r.value+r.length-1 > end {
-		unmapped = append(unmapped, Range{end + 1, (r.value + r.length) - end})
+		unmapped = append(unmapped, Range{end + 1, (r.value + r.length - 1) - end})
 	}
 	return unmapped, mapped
 }
